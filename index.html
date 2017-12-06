@@ -1,0 +1,150 @@
+<!doctype html>
+<head>
+  <meta charset = "utf-8">
+</head>
+
+<body>
+<div id=logo><a href="#main1" target="_self"> <img src= "img/logo2.png" style="width: 25%;"></a></div>
+<div class="content">
+  <section id="main1"class="scrollTo"><div>
+  <a href="index2.html#main1-2" target="_self">
+  <img src="img/main.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section>
+  <section id="main2"class="scrollTo"></section>
+  <section id="main3"class="scrollTo">
+  <div>
+  <a href="index2.html#main3-2" target="_self"><img src="img/3.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section>
+  <section id="main4"class="scrollTo">
+      <div>
+  <a href="index2.html#main4-2" target="_self">
+  <img src="img/4.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section>
+  <section id="main5"class="scrollTo">
+  <div>
+  <a href="index2.html#main5-2" target="_self">
+  <img src="img/5.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section>
+  <section id="main6"class="scrollTo">
+  <div>
+  <a href="index2.html#main6-2" target="_self">
+  <img src="img/6.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section>
+  <section id="main7"class="scrollTo">
+  <div>
+  <a href="index2.html#main7-2" target="_self">
+  <img src="img/7.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section> 
+  <section id="main8"class="scrollTo">
+  <div>
+  <a href="index2.html#main8-2" target="_self">
+  <img src="img/8.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section> 
+  <section id="main9"class="scrollTo">
+  <div>
+  <a href="index2.html#main9-2" target="_self">
+  <img src="img/9.png" style="width: 100%; height: auto;">
+  </a>
+  </div>
+  </section> 
+  <section id="main10"class="scrollTo"></section> 
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var scrolling = false;
+var currentPos = 0;
+
+    function scrollUp(){
+        if(!scrolling && currentPos > 0 ){
+            scrolling=true;
+            currentPos --;
+            var scrollToElement = $('.scrollTo')[currentPos];
+
+            $('html, body').animate({
+                scrollTop: $(scrollToElement).offset().top
+            }, 500, function(){
+                scrolling = false;
+            });      
+        }
+    }   
+
+    function scrollDown(){   
+        if(!scrolling && currentPos < $('.scrollTo').length-1  ){
+            scrolling=true;
+            currentPos ++;
+            var scrollToElement = $('.scrollTo')[currentPos];
+
+            $('html, body').animate({
+                scrollTop: $(scrollToElement).offset().top
+            }, 500,function(){
+                scrolling = false;
+            }); 
+        }
+    }    
+
+    $(document).ready(function() {
+
+        // Get the current position on load
+
+        for( var i = 0; i < $('.scrollTo').length; i++){
+            var elm = $('.scrollTo')[i];
+
+            if( $(document).scrollTop() >= $(elm).offset().top ){
+                currentPos = i;
+            }
+        }
+
+        $(document).bind('DOMMouseScroll', function(e){
+            if(e.originalEvent.detail > 0) {
+                scrollDown();
+            }else {
+                scrollUp();   
+            }
+            return false;
+        });
+
+        $(document).bind('mousewheel', function(e){
+            if(e.originalEvent.wheelDelta < 0) {
+                scrollDown();
+            }else {
+                scrollUp();     
+            }
+            return false;
+        });
+    });
+</script>
+</body>
+<style>
+html, body { margin: 0; padding: 0; width: 100%; height: 100%;}
+#logo {position:fixed; top: 1%; left: 1%;}
+.content { width: 100%; height: 100%; }
+.content > section { width: 100%; height: 100%; }
+
+#main2 { background:url(img/2.png);         
+         background-attachment: fixed;
+         background-position: center; 
+         background-size: 100% auto;
+         overflow: hidden;
+         background-repeat: no-repeat;}
+
+#main10 { background:url(img/10.png);         
+         background-attachment: fixed;
+         background-position: center; 
+         background-repeat: no-repeat;
+         overflow: hidden;}
+
+</style>
